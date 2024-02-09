@@ -1,5 +1,5 @@
 # HOWTO: docker run -it --rm --gpus '"device=0"' .
-FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
+FROM nvidia/cuda:12.3.0-runtime-ubuntu22.04
 
 # Install Whisper
 WORKDIR /usr/src
@@ -12,6 +12,7 @@ RUN \
         python3 \
         python3-dev \
         python3-pip \
+        nano \
     \
     && pip3 install --no-cache-dir -U \
         setuptools \
