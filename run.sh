@@ -6,4 +6,4 @@ python3 -m wyoming_faster_whisper \
     --model "$MODEL"
     --beam-size "$BEAM_SIZE"
     --language "$LANGUAGE"
-    --device cuda
+    --device "cuda"
