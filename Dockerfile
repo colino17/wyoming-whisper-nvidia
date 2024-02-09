@@ -1,7 +1,13 @@
-# HOWTO: docker run -it --rm --gpus '"device=0"' .
-FROM nvidia/cuda:12.3.0-runtime-ubuntu22.04
+# BASE IMAGE
+FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
 
-# Install Whisper
+# ENVIRONMENT VARIABLES
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu
+ENV MODEL=medium-int8
+ENV BEAM_SIZE=5
+ENV LANGUAGE=en
+
+# INSTALL WHISPER
 WORKDIR /usr/src
 ARG WHISPER_VERSION='1.0.1'
 
@@ -29,10 +35,8 @@ RUN \
 WORKDIR /
 COPY run.sh ./
 
-ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu
-ENV MODEL=medium-int8
-ENV BEAM_SIZE=5
-ENV LANGUAGE=en
+# EXPOSE PORTS
 EXPOSE 10300
 
+# ENTRYPOINT COMMAND
 ENTRYPOINT ["bash", "/run.sh"]
