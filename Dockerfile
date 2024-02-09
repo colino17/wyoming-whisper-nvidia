@@ -29,6 +29,9 @@ WORKDIR /
 COPY run.sh ./
 
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu
+ENV MODEL=medium-int8
+ENV BEAM_SIZE=5
+ENV LANGUAGE=en
 EXPOSE 10300
 
 ENTRYPOINT ["bash", "/run.sh"]
